@@ -112,4 +112,28 @@ describe('chainbuilder-flow', function () {
         .end(done);
     });
   });
+
+  describe('#$beginWhile(), #$endWhile()', function () {
+    var myChain;
+    beforeEach(function () {
+      myChain = chainBuilder({
+        mixins: [
+          require('..')()
+        ]
+      });
+    });
+
+    it('runs the block while the condition is true', function (done) {
+      myChain(1)
+        .$beginWhile(function (value) { return value < 4; })
+          .transform(function (err, result, done) { done(err, result + 1); })
+        .$endWhile()
+        .tap(function (err, result) {
+          if (err) return;
+          assert.equal(result, 4);
+        })
+        .end(done);
+    });
+
+  });
 });
