@@ -1,11 +1,14 @@
 module.exports = function (superOptions) {
-  var map = require('./lib/map')(superOptions);
+  var mapBlock = require('./lib/map')(superOptions);
+  var ifBlock = require('./lib/if')(superOptions);
 
   return {
-    $beginMap: map.$beginMap,
-    $endMap: map.$endMap,
-    // Alias map
-    $beginEach: map.$beginMap,
-    $endEach: map.$endMap
+    $beginMap: mapBlock.$beginMap,
+    $endMap: mapBlock.$endMap,
+    $beginIf: ifBlock.$beginIf,
+    $endIf: ifBlock.$endIf,
+    // Alias
+    $beginEach: mapBlock.$beginMap,
+    $endEach: mapBlock.$endMap
   };
 };

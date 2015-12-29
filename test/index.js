@@ -1,5 +1,6 @@
 var assert = require('chai').assert;
 var chainBuilder = require('chainbuilder');
+var sinon = require('sinon');
 
 describe('chainbuilder-flow', function () {
   var myChain;
@@ -74,6 +75,41 @@ describe('chainbuilder-flow', function () {
           assert.deepEqual(fetchedOrder, [3, 4, 2])
         })
         .end(done)
+    });
+  });
+
+  describe('#$beginIf(), #$endIf()', function () {
+    var myChain;
+    beforeEach(function () {
+      myChain = chainBuilder({
+        mixins: [
+          require('..')()
+        ]
+      });
+    });
+
+    it('runs the block if the statement evaluates to true', function (done) {
+      myChain(1)
+        .$beginIf(function (value) { return value === 1; })
+          .transform(function (err, result, done) { done(err, 'value was ' + result + '!'); })
+        .$endIf()
+        .tap(function (err, result) {
+          if (err) return;
+          assert.equal(result, 'value was 1!');
+        })
+        .end(done);
+    });
+
+    it('skips the block if the statement evaluates to false', function (done) {
+      myChain(2)
+        .$beginIf(function (value) { return value === 1; })
+          .transform(function (err, result, done) { done(err, 'value was ' + result + '!'); })
+        .$endIf()
+        .tap(function (err, result) {
+          if (err) return;
+          assert.equal(result, 2);
+        })
+        .end(done);
     });
   });
 });
