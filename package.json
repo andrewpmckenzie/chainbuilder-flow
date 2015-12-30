@@ -1,6 +1,6 @@
 {
   "name": "chainbuilder-flow",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Flow blocks (each, map, if, while) for chainbuilder.",
   "main": "index.js",
   "scripts": {
@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "chai": "^3.4.1",
-    "chainbuilder": "^2.0.0",
+    "chainbuilder": "^2.0.5",
     "mocha": "^2.3.4",
     "mockery": "^1.4.0",
     "sinon": "^1.17.2"
