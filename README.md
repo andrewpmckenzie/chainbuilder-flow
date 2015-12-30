@@ -47,7 +47,7 @@ _e.g._
 myChain(2)
 
   .$beginIf(function (result) { return result === 1; })
-    .inject(3)
+    .inject(2)
   .$endIf()
   .end(function (err, result) { console.log(result); // > 2 })
   
