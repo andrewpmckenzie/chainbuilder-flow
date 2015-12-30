@@ -35,8 +35,8 @@ myChain([1, 2, 3])
 ```
 
 **`@param {Object} options`** (optional) flow control options.
-**`@param {Boolean} options.series`** (optional) run the block in series (one at a time).
-**`@param {Number} options.limit`** (optional) limit to running n items in parallel at a time.
+**`@param {Boolean} options.series`** (optional) run the block in series (one at a time).  
+**`@param {Number} options.limit`** (optional) limit to running n items in parallel at a time.  
 **`@alias #$beginEach(options), #$endEach()`**
 
 #### #$beginIf(conditionFn), #$endIf()
